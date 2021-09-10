@@ -1,0 +1,38 @@
+* {
+    /* height & width now includes border & padding */
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: Helvetica;
+    height: 100vh;
+  }
+
+  h1{
+      text-align: center;
+  }
+  #container{
+      height: 1000px;
+      width: 1000px;
+      margin: auto;
+      /* margin-top: 10%; */
+  }
+
+.rows{
+    display: flex;
+    /* justify-content: space-evenly; */
+}
+  .row{
+    height: 100px;
+    width: 100px;
+    margin: 3px;
+}
+
+  .black{
+      background-color :black;
+  }
+
+  .red{
+      background-color: #e8db84;
+  }
