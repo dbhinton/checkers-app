@@ -19,12 +19,13 @@
   #container{
       height: 1000px;
       width: 1000px;
-      margin: auto;
       margin-top: 5%;
+      margin: auto;
   }
 
 .rows{
     display: flex;
+    margin: 0 auto;
 }
 
   .black-square{
@@ -35,7 +36,7 @@
       text-align: center;
   }
 
-  .gold-square{
+  .off-white-square{
       background-color: #e8db84;
       height: 100px;
       width: 100px;
@@ -44,14 +45,6 @@
   }
 
   .black-checker{
-    
+
   }
 
-button{
-      border-radius: 20px;
-      background-color: rgb(204, 235, 120);
-      margin: auto;
-      height: 200px;
-      width: 300px;
-      margin-bottom: 100px;
-  }
