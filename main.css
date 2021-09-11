@@ -26,18 +26,25 @@
 .rows{
     display: flex;
 }
-  .row{
-    height: 100px;
-    width: 100px;
-    margin: 3px;
-}
 
-  .black{
+  .black-square{
       background-color :black;
+      height: 100px;
+      width: 100px;
+      margin: 3px;
+      text-align: center;
   }
 
-  .gold{
+  .gold-square{
       background-color: #e8db84;
+      height: 100px;
+      width: 100px;
+      margin: 3px;
+      text-align: center;
+  }
+
+  .black-checker{
+    
   }
 
 button{
