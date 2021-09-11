@@ -2,26 +2,29 @@
     /* height & width now includes border & padding */
     box-sizing: border-box;
   }
-  
+
+
   body {
     margin: 0;
     font-family: Helvetica;
     height: 100vh;
+    display: grid;
   }
 
-  h1{
-      text-align: center;
+   h1{
+    margin-top: 3%;
+    margin: auto;
   }
+
   #container{
       height: 1000px;
       width: 1000px;
       margin: auto;
-      /* margin-top: 10%; */
+      margin-top: 5%;
   }
 
 .rows{
     display: flex;
-    /* justify-content: space-evenly; */
 }
   .row{
     height: 100px;
@@ -33,6 +36,15 @@
       background-color :black;
   }
 
-  .red{
+  .gold{
       background-color: #e8db84;
+  }
+
+button{
+      border-radius: 20px;
+      background-color: rgb(204, 235, 120);
+      margin: auto;
+      height: 200px;
+      width: 300px;
+      margin-bottom: 100px;
   }
