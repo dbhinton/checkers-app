@@ -14,6 +14,7 @@
 header{
     margin-top: 10px;
     margin: auto;
+    text-decoration: underline;
   }
 
   #container{
@@ -76,9 +77,45 @@ header{
     font-size: 2em;
     justify-content: center;
   }
+  .tile-selected{
+    box-shadow: 0 3px 4px 0;
+    opacity: .5;
+  }
+
+  .checker-selected{
+    box-shadow: 0 0 0 99999px rgba(78, 168, 85, 0.8);
+  }
+
+  #reset:hover{
+    background-color: #c0deb4
+    
+  }
+  
+#orange-score{
+  display: inline;
+  position: relative;
+  left: 450px;
+  top: 50px;
+}
+#tan-score{
+  display: inline;
+  position: relative;
+  left: 900px;
+  top: 50px;
+}
+
+#score{
+    font-family: "Helvetica";
+    font-size: 1.5em;
+  }
+
+  #score-separator{
+    display: inline;
+
+  }
   
 
-  /* media only screen and (max-width: 800px){
+  /* media only screen and (max-width: 800px ){
     body{
     }
   } */

@@ -9,26 +9,41 @@
             // 
 
 // It doesn't really make sense to represent the board as an object 
-const board = []
+const board = [null, "one", null, "two", null, "three", null, "four", 
+null, "five", null, "six", null, "seven", null, "eight", 
+null, "nine", null, "ten", null, "eleven", null, "twelve", 
+null, null, null, null, null, null, null, null ,
+null, null, null, null, null, null, null, null,
+null, "thirteen", null, "fourteen", null, "fifteen", null, "sixteen", null, 
+"seventeen", null, "eighteen", null, "nineteen", null, "twenty",
+null, "twenty-one", null, "twenty-two", null, "twenty-three", null, "twenty-four"
+ ]
 
 
 
 
 // Initialize state variables
 let scores;
-let winner;
 let results;
 let pieces;
 
-// Event Listners
-let orangeCheckerSelector = document.querySelectorAll(".orange-checker");
-let tanCheckerSelector = document.querySelectorAll(".tan-checker");
-const tiles = document.querySelectorAll('.tile');
+// State Variables
+let selectOneOrange = document.querySelector(".orange-checker")
+let selectOneTan = document.querySelector(".tan-checker")
+let selectAllOrange = document.querySelectorAll(".orange-checker");
+let selectAllTan = document.querySelectorAll(".tan-checker");
+let selectOneTile = document.querySelector(".tile");
+const selectAllTiles = document.querySelectorAll('.tile');
 const whosGo = {
     orangeGo:  document.querySelector("#orange-go"),
     tanGo:  document.querySelector("tan-go")
 }
-let kingMe = document.querySelectorAll(".class")
+
+// Event Listners
+selectOneOrange.addEventListener("click", addCheckerHighlight)
+selectOneOrange.addEventListener("click", removeCheckerHighlight)
+
+// let kingMe = document.querySelectorAll(".class")
 
 const reset = document.querySelector("#reset");
 reset.addEventListener("click", function(){
@@ -36,41 +51,49 @@ reset.addEventListener("click", function(){
 })
 
 // State variables
-let userGo;
-let orangePieces;
-let tanPieces;
+let userCheckerChoices;
 
 // User Attributes
 const user = {
     orange: {
-        numberOfPieces: 12,
-        userGo: null,
-        color: orangeCheckerSelector
+        name : "Orange"
+        numPieces: 12,
+        userGo: true,
+        color: selectAllOrange
     },
     tan: {
-        numberOfPieces: 12,
-        userGo: null,
-        color: tanCheckerSelector
+        name: "Tan"
+        numPieces: 12,
+        userGo: false,
+        color: selectAllTan
     }
     }
 
 const checkerProperties = {
     isKing: false,
     color: {
-        isOrange: orangeCheckerSelector,
-        isTan: tanCheckerSelector
+        isOrange: selectAllOrange,
+        isTan: selectAllTan
     },
     checkerIndex: null,
     boardIndex: null,
 }
 
-
+// functions
+function init(){
+    scores = {
+        tan: user.tan.numPieces,
+        orange: user.orange.numPieces
+    }
+}
 
 
 function kingMe(){
-    if(checkerProperties.isKing === true)
-}
+    if(checkerProperties.isKing === true){
+        return
 
+    }
+}
 
     function userSelection(){
         if(user.orange[userGo] === true){
@@ -84,20 +107,81 @@ function kingMe(){
         }
     }
 
+    function tileSelection(){
+        if(tile){
+            return
+        }
+    }
+
+    
+
     function userDeselect(){
+        if(user.orange.userGo === true){
+            return
+
+        }
+
+    }
+
+    function legalMove(from, to){
+        if(2){
+            return
+        }
 
     }
 
     function userGo(){
-        if(user.orange){
+        if(user.orange.userGo){
+            for(let i = 0; i < selectAllOrange.length; i++){
+                selectAllOrange[i].addEventListener("click", highlightSelectedChecker)
+            }
+        }else{
+            for(let i = 0; i < selectAllTan.length; i++){
+                    selectAllTan[i].addEventListener("click", highlightSelectedChecker)
+                }
+            }
+            removeTileHighlight()
+        }
 
+    function usersTurn(){
+        if(user.orange.userGo){
+            userCheckerChoices = selectAllOrange
+        }else{
+            userCheckerChoices = selectAllTan
+        }   
+    }
+
+    function addCheckerHighlight(){
+        selectOneOrange.classList.add("checker-selected")
+
+    }
+    function removeCheckerHighlight(){
+        selectOneOrange.classList.remove("checker-selected")
+
+    }
+
+    function addTileHighlight(){
+        selectOneOrange.classList.add("tile-selected")
+    }
+
+    function removeTileHighlight(){
+        for(let i = 0; i < selectAllTiles; i++){
+            selectOneTile.classList.remove("tile-selected")
+        }
+
+    }
+
+    function switchUserGo(){
+
+    }
+    function winner(){
+        if(user.orange.numPieces === user.tan.numPieces){
+            alert("its a tie")
+        }
+        if(user.orange.numPieces > user.tan.numPieces){
+            alert(user.orange.name + " wins")
+        }else{
+            alert(user.tan.name + " wins")
         }
     }
-
-    function highlightSelectedChecker(){
-
-    }
-
-    function switchUser(){
-
-    }
+    
