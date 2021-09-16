@@ -2,6 +2,7 @@
 let board; //board is used to populate the board
 let selectedPiece = null;
 let gameBoard = document.getElementById('board')
+let turn = true
 
 
 
@@ -82,7 +83,7 @@ gameBoard.addEventListener("click", function(e){
         return
     }
     let temp = board[x][y] //Create temporary variable and set it equal to board, if board is null then temp will be null
-    if(selectedPiece){ //selected piece will be null on first click, on second click it will not be because 
+    if(selectedPiece && selectedPiece.name === "Black" && turn === true){ //selected piece will be null on first click, on second click it will not be because 
         if(temp == null){ //if temp is null, temp is only null if 
             board[x][y] = selectedPiece //this is temps previous value
             console.log(x + " " + y +  " <---this is xy")
@@ -90,17 +91,43 @@ gameBoard.addEventListener("click", function(e){
             let j = selectedPiece.index[3] //this is temps previous column
             board[i][j] = null
             console.log(i + " " + j +  " <---this is ij")
-            if (i-x === 1 && j-x === -1){
-                selectedPiece.index = `r${x}c${y}` //this changes where the the selected piece is
-                selectedPiece = null
+
+            selectedPiece.index = `r${x}c${y}` //this changes where the the selected piece is
+            selectedPiece = null
+            turn = false
     
-            }
+
             // board[i][j] = null
             // selectedPiece.index = `r${x}c${y}` //this changes where the the selected piece is
             // selectedPiece = null
         }else{
             selectedPiece = temp
+     
+     
         }
+    }else if(selectedPiece && selectedPiece.name === "Beige" && turn === false){
+        if(temp == null){ //if temp is null, temp is only null if 
+            board[x][y] = selectedPiece //this is temps previous value
+            console.log(x + " " + y +  " <---this is xy")
+            let i = selectedPiece.index[1] //this is temps previous row
+            let j = selectedPiece.index[3] //this is temps previous column
+            board[i][j] = null
+            console.log(i + " " + j +  " <---this is ij")
+
+            selectedPiece.index = `r${x}c${y}` //this changes where the the selected piece is
+            selectedPiece = null
+            turn = true
+    
+
+            // board[i][j] = null
+            // selectedPiece.index = `r${x}c${y}` //this changes where the the selected piece is
+            // selectedPiece = null
+        }else{
+            selectedPiece = temp
+     
+     
+        }
+
     }else{
         selectedPiece = temp; //Selected piece is equal to temps previous value
         console.log(selectedPiece.index[1])
