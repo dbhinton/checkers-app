@@ -1,73 +1,133 @@
 
 // Overarching rules of the game
-    // 1. User clicks piece
+    // 1. User clicks checker
     // 2. User clicks desired cell
     // 3. What happens after user makes selection?
             // State data is changed in backend
-            // Index of selected piece
+            // Index of selected checker
             // Index of board
             // 
 
 // It doesn't really make sense to represent the board as an object 
-const board = [null, "one", null, "two", null, "three", null, "four", 
-null, "five", null, "six", null, "seven", null, "eight", 
-null, "nine", null, "ten", null, "eleven", null, "twelve", 
-null, null, null, null, null, null, null, null ,
-null, null, null, null, null, null, null, null,
-null, "thirteen", null, "fourteen", null, "fifteen", null, "sixteen", null, 
-"seventeen", null, "eighteen", null, "nineteen", null, "twenty",
-null, "twenty-one", null, "twenty-two", null, "twenty-three", null, "twenty-four"
- ]
+// const board = [null, null, null, null, null, null, null, null, //row 1
+// null,null, null, null, null, null, null, null, //row 2
+// null, null, null, null, null, null, null, null, //row 3
+// null, null, null, null, null, null, null, null ,//row 4
+// null, null, null, null, null, null, null, null,//row 5
+// null, null, null, null, null, null, null, null, null, //row 6
+// null, null, null, null, null, null, null,//row 7
+// null, null, null, null, null, null, null, null//row 8
+//  ]
 
+let board;
+let gameBoard = document.getElementById('board')
 
+function init() {
+    
+    board = new Array(8).fill(new Array(8).fill(null))
+
+    renderBoard()
+}
 
 
 // Initialize state variables
 let scores;
-let results;
-let pieces;
+let checkers;
 
 // State Variables
 let selectOneOrange = document.querySelector(".orange-checker")
-let selectOneTan = document.querySelector(".tan-checker")
 let selectAllOrange = document.querySelectorAll(".orange-checker");
+let selectOneTan = document.querySelector(".tan-checker")
 let selectAllTan = document.querySelectorAll(".tan-checker");
 let selectOneTile = document.querySelector(".tile");
 const selectAllTiles = document.querySelectorAll('.tile');
-const whosGo = {
-    orangeGo:  document.querySelector("#orange-go"),
-    tanGo:  document.querySelector("tan-go")
-}
-
 // Event Listners
-selectOneOrange.addEventListener("click", addCheckerHighlight)
-selectOneOrange.addEventListener("click", removeCheckerHighlight)
+// function clickOrange(){
+//     selectAllOrange.addEventListener("click", function(){
+//         selectOneOrange.classList.add("tile-selected")
+//     });
+// }
+// const clickTan = selectAllTan.addEventListener("click", addCheckerHighlight);
+// const unclickOrange = selectAllOrange.addEventListener("click", removeCheckerHighlight);
+// const unclickTan = selectAllTan.addEventListener("click", removeCheckerHighlight);
+// const clickTile = selectAllTiles.addEventListener("click", addTileHighlight);
+// const unClickTile = selectAllTiles.addEventListener("click", removeTileHighlight);
 
 // let kingMe = document.querySelectorAll(".class")
 
-const reset = document.querySelector("#reset");
-reset.addEventListener("click", function(){
+const resetButton = document.querySelector("#reset");
+resetButton.addEventListener("click", function(){
     init();
 })
 
 // State variables
-let userCheckerChoices;
+let checkerChoices;
+let itsYourGo = true
 
 // User Attributes
 const user = {
     orange: {
-        name : "Orange"
-        numPieces: 12,
+        checkerIndex: -1,
+        selectorIdOfChecker: null,
         userGo: true,
-        color: selectAllOrange
+        color: selectAllOrange,
+        kingMe: false,
+        moveForwardSeven: false,
+        moveForwardNine: false,
+        moveForwardFourteen: false,
+        moveForwardEighteen: false,
+        moveOppositeSeven: false,
+        moveOppositeNine: false,
+        moveOppositeFourteen: false,
+        moveOppositeEighteen: false
     },
     tan: {
-        name: "Tan"
-        numPieces: 12,
+        checkerIndex: -1,
+        selectorIdOfChecker: -1,
         userGo: false,
-        color: selectAllTan
+        color: selectAllTan,
+        moveForwardSeven: false,
+        moveForwardNine: false,
+        moveForwardFourteen: false,
+        moveForwardEighteen: false,
+        moveOppositeSeven: false,
+        moveOppositeNine: false,
+        moveOppositeFourteen: false,
+        moveOppositeEighteen: false
     }
     }
+function Pawn (x, y, width, height, color, type){
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+    this.color = color;
+    this.type = type;
+
+    this.render = function () {
+        document.createElement('div')
+        // this.x
+        // this.y
+        // this.width
+        // this.height;
+        
+    }
+}
+// Class for active and class for disabled that's assigned to a selected piece for a players turn
+// Create function for turn
+// If it's your turn all of your pieces are active
+// Then select a piece
+// Turn function checks to see if other tiles nearby are occupied or not
+
+let pawn1 = new Pawn(200, 200, 200, 200, "red", "attacker")
+pawn1.render()
+console.log(pawn1.render())
+
+// function resetUser(color){
+//     user.color.index = -1;
+//     user.color.selectorIdOfChecker = -1;
+//     user.color.
+// }
 
 const checkerProperties = {
     isKing: false,
@@ -94,34 +154,66 @@ function kingMe(){
 
     }
 }
-
-    function userSelection(){
-        if(user.orange[userGo] === true){
-            for(let i = 0; i<orangeCheckerSelector.length; i++){
-                orangeCheckerSelector[i].addEventListener("click", selectUser);
+// Select checkers depending on whos turn it is
+    function giveCheckersEventListeners(){
+        if(itsYourGo){
+            for(let i = 0; i<selectAllOrange.length; i++){
+                selectAllOrange[i].addEventListener("click", selectUserCheckers);
             }
         }else{
-            for(let i = 0; i<tanCheckerSelector.length; i++){
-                tanCheckerSelector[i].addEventListener("click", selectUser)
+            for(let i = 0; i< selectAllTan.length; i++){
+                selectAllTan[i].addEventListener("click", selectUserCheckers)
             }
         }
+        removeTileHighlight()
+        removeCheckerHighlight()
+        console.log("it works")
     }
 
-    function tileSelection(){
-        if(tile){
-            return
-        }
+    function selectUserCheckers(){
+        if(itsYourGo){
+            checkerChoices = selectAllOrange;
+        }else{
+            checkerChoices = selectAllTan;
+        }   
     }
 
-    
+    // Add and remove checker highlights
 
-    function userDeselect(){
-        if(user.orange.userGo === true){
-            return
 
-        }
+
+    function addCheckerHighlight(){
+        selectOneOrange.classList.add("checker-selected")
 
     }
+
+function addTileHighlight(){
+    for (let i = 0; i<selectAllTiles.length; i++){
+        selectAllTiles[i].addEventListener("click", function(){
+            this.classList.add("tile-selected")
+            console.log("23452wdf")
+        })
+    }
+}
+addTileHighlight()
+
+
+function removeTileHighlight(){
+    for(let i = 0; i < selectAllTiles.length; i++){
+        selectAllTiles[i].addEventListener("click", function(){
+            this.classList.remove("tile-selected")
+            console.log("hello")
+        })
+    }
+}
+
+    function removeCheckerHighlight(){
+            resetButton.classList.remove("pressed")
+    }
+
+
+
+
 
     function legalMove(from, to){
         if(2){
@@ -130,52 +222,14 @@ function kingMe(){
 
     }
 
-    function userGo(){
-        if(user.orange.userGo){
-            for(let i = 0; i < selectAllOrange.length; i++){
-                selectAllOrange[i].addEventListener("click", highlightSelectedChecker)
-            }
-        }else{
-            for(let i = 0; i < selectAllTan.length; i++){
-                    selectAllTan[i].addEventListener("click", highlightSelectedChecker)
-                }
-            }
-            removeTileHighlight()
-        }
 
-    function usersTurn(){
-        if(user.orange.userGo){
-            userCheckerChoices = selectAllOrange
-        }else{
-            userCheckerChoices = selectAllTan
-        }   
-    }
-
-    function addCheckerHighlight(){
-        selectOneOrange.classList.add("checker-selected")
-
-    }
-    function removeCheckerHighlight(){
-        selectOneOrange.classList.remove("checker-selected")
-
-    }
-
-    function addTileHighlight(){
-        selectOneOrange.classList.add("tile-selected")
-    }
-
-    function removeTileHighlight(){
-        for(let i = 0; i < selectAllTiles; i++){
-            selectOneTile.classList.remove("tile-selected")
-        }
-
-    }
 
     function switchUserGo(){
 
+
     }
     function winner(){
-        if(user.orange.numPieces === user.tan.numPieces){
+        if(user.orange.numPieces === 0){
             alert("its a tie")
         }
         if(user.orange.numPieces > user.tan.numPieces){
@@ -184,4 +238,4 @@ function kingMe(){
             alert(user.tan.name + " wins")
         }
     }
-    
+
