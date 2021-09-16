@@ -1,12 +1,8 @@
 // State variables
-let board;
+let board; //board is used to populate the board
 let selectedPiece = null;
 let gameBoard = document.getElementById('board')
 
-let numCheckers = 12;
-let turn = true;
-
-// Event listeners:
 
 
 
@@ -16,6 +12,7 @@ class BeigePiece {
         this.king = false
         this.index = index
         this.turn = false
+        this.name = "Beige"
 
     }
     // add move logic here 
@@ -28,6 +25,7 @@ class BlackPiece {
         this.king = false
         this.index = index
         this.turn = false
+        this.name = "Black"
     }
      // add move logic here 
 }
@@ -46,6 +44,8 @@ function init() {
     })
     renderBoard()
 }
+
+
 function renderBoard() {
     gameBoard.textContent = ''
     board.forEach((row , i) => {
@@ -67,16 +67,7 @@ function renderBoard() {
 
 init()
 
-let pieces = document.querySelectorAll(".square")
-let boardPiece;
-function onlyPieces(){
-    for(let i = 0; i < pieces.length; i++){
-        if(i%2 !== 0){
-        boardPiece = pieces[i].textContent
-    }
-    }
-    return boardPiece
-}
+
 
 // for(let i = 0; i < pieces.length; i++){
 //     return pieces[i].textContent
@@ -84,39 +75,36 @@ function onlyPieces(){
 
 gameBoard.addEventListener("click", function(e){
     let idx = e.target.id;
-    let x = Number(idx[1])
-    let y = Number(idx[3])
-    if((x + y)%2 === 0){
+    // console.log(idx)
+    let x = Number(idx[1]) //this grabs the second index of the id which is the row number
+    let y = Number(idx[3]) //this grabs the 4th index of the board id which is the column number
+    if((x + y)%2 === 0){//if the row number + column number have no remainder then do not do anything because that means it's a beige tile, which you shouldn't be able to click on
         return
     }
-    console.log(board)
-    let temp = board[x][y]
-
-    if(selectedPiece){
-        if(temp == null){
-            board[x][y] = selectedPiece
-            let i = selectedPiece.index[1]
-            let j = selectedPiece.index[3]
+    let temp = board[x][y] //Create temporary variable and set it equal to board, if board is null then temp will be null
+    if(selectedPiece){ //selected piece will be null on first click, on second click it will not be because 
+        if(temp == null){ //if temp is null, temp is only null if 
+            board[x][y] = selectedPiece //this is temps previous value
+            console.log(x + " " + y +  " <---this is xy")
+            let i = selectedPiece.index[1] //this is temps previous row
+            let j = selectedPiece.index[3] //this is temps previous column
             board[i][j] = null
-            selectedPiece.index = `r${x}c${y}`
-            selectedPiece = null
+            console.log(i + " " + j +  " <---this is ij")
+            if (i-x === 1 && j-x === -1){
+                selectedPiece.index = `r${x}c${y}` //this changes where the the selected piece is
+                selectedPiece = null
+    
+            }
+            // board[i][j] = null
+            // selectedPiece.index = `r${x}c${y}` //this changes where the the selected piece is
+            // selectedPiece = null
         }else{
             selectedPiece = temp
         }
-
     }else{
-        selectedPiece = temp;
+        selectedPiece = temp; //Selected piece is equal to temps previous value
+        console.log(selectedPiece.index[1])
     }
     renderBoard()
 })
 
-
-
-
-// pieces.addEventListener("click")
-
-// Functions:
-// When a piece is clicked find the possible moves
-function findCells(event, ui){
-
-}
