@@ -5,13 +5,17 @@
 
 body {
     height: 100vh;
-    margin: 0;
+    margin: 10px auto;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-family: 'Open Sans', sans-serif;
+    background-color: grey;
+    /* margin-top: 20px; */
 }
+
 
 #board {
     border: .5vh solid grey;
@@ -38,6 +42,23 @@ button{
     font-family: Helvetica;
 }
 
+.score{
+    font-size: 2rem;
+    margin-top: 20px;
+    
+}
+
+.black-turn{
+    padding: 50px;
+}
+
+.beige-turn{
+    padding: 50px;
+    color: rgb(245, 245, 220);
+}
+
+
+
 .pressed{
     box-shadow: 0 3px 4px 0;
     opacity: .5;
@@ -58,4 +79,39 @@ button{
       border: 1px solid white;
       border-radius: 50%;
   }
+
+
+
+  .hide-black-text{
+      color: rgba(0, 0, 0, .5)
+  }
+
+  .hide-beige-text{
+    color: rgba(245, 245, 220, 0.5);
+  }
   
+button{
+    background-color: brown;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    color: #FFFFFF;
+    font-family: Helvetica;
+    width: 185px;
+    font-size: 20px;
+    font-weight: 900;
+    padding: 12px;
+    box-shadow: 1px 1px 6px 0px #000000;
+    -webkit-box-shadow: 1px 1px 6px 0px #000000;
+    -moz-box-shadow: 1px 1px 6px 0px #000000;
+    text-shadow: 1px 1px 6px #000000;
+    border: solid #762C2C 1px;
+    text-decoration: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+
+#reset:hover{
+      background-color: green;
+  }
+

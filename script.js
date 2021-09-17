@@ -70,6 +70,10 @@ function renderBoard() {
 
 init()
 
+document.querySelector("button").addEventListener("click", function(){
+    init()
+})
+
 gameBoard.addEventListener("click", function(e){
     let idx = e.target.id;
     let x = Number(idx[1])
@@ -85,6 +89,7 @@ gameBoard.addEventListener("click", function(e){
             let j = selectedPiece.index[3]
             board[i][j] = null
             jumpBeigePiece(i, j, x, y)
+            blackTurn()
             selectedPiece.index = `r${x}c${y}`
             selectedPiece = null
             turn = false
@@ -98,6 +103,7 @@ gameBoard.addEventListener("click", function(e){
             let j = selectedPiece.index[3]
             board[i][j] = null  
             jumpBlackPiece(i, j, x, y)
+            beigeTurn()
             selectedPiece.index = `r${x}c${y}`
             selectedPiece = null
             turn = true
@@ -115,7 +121,7 @@ function jumpBeigePiece(fromRow, fromCol, toRow, toCol){
     fromCol = parseInt(fromCol)
     toRow = parseInt(toRow)
     toCol = parseInt(toCol)
-    if(fromRow-toRow === 2 && (fromCol-toCol === -2 || fromCol-toCol === 2)){
+    if(fromRow-toRow === 2 && (fromCol-toCol === 2 || fromCol-toCol === -2)){
         if(board[fromRow-1][fromCol+1] !== null){
             board[fromRow-1][fromCol+1] = null
             beigePieces -= 1
@@ -141,8 +147,10 @@ function jumpBlackPiece(fromRow, fromCol, toRow, toCol){
         if(board[fromRow+1][fromCol+1]!==null){
             board[fromRow+1][fromCol+1] = null
             blackPieces -= 1
+            console.log("from row ", fromRow,"to Row ", toRow, " from col ", fromCol, " to Col ", toCol)
         }else if(board[fromRow+1][fromCol-1] !== null){
             board[fromRow+1][fromCol-1] = null
+            console.log("from row ", fromRow,"to Row ", toRow, " from col ", fromCol, " to Col ", toCol)
             blackPieces -= 1
         }else{
             return
@@ -153,3 +161,14 @@ function jumpBlackPiece(fromRow, fromCol, toRow, toCol){
 
 
 }
+
+function beigeTurn(){
+    document.querySelector(".beige-turn").classList.add("hide-beige-text")
+    document.querySelector(".black-turn").classList.remove("hide-black-text")
+}
+
+function blackTurn(){
+    document.querySelector(".black-turn").classList.add("hide-black-text")
+    document.querySelector(".beige-turn").classList.remove("hide-beige-text")
+}
+
