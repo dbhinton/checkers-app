@@ -9,7 +9,7 @@ It is positioned so that each player has a light square on the right side corner
 
 Typically, they are flat and round. The color of one set is black and the other red or white or beige.
 
-## Game Play
+### Game Play
 
 Checkers is played by two players.
 
@@ -17,12 +17,12 @@ Each player begins the game with 12 discs and places them on the 12 dark squares
 
 Black opens the game, then players alternate their turns.
 
-## Move
+### Move
 The pieces always move diagonally and single pieces are always limited to forward moves.
 
 A piece making a non-capturing move may move only one square.
 
-## Capture
+### Capture
 To capture a piece of your opponent, your piece leaps over one of the opponent's pieces and lands in a straight diagonal line on the other side. This landing square must be empty.
 
 When a piece is captured, it is removed from the board.
