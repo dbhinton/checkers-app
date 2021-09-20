@@ -37,7 +37,7 @@ Single pieces may shift direction diagonally during a multiple capture turn, but
 
 ### Tech used: HTML, CSS, JS
 ![alt text](https://i.imgur.com/7EG1EAs.png)
-[Link to game](https://dbhinton.github.io/checkers-app/)<br />
+[Link to game](https://checkers-app.s3.amazonaws.com/main.html)<br />
 ### Future Enhancements: 
 * Add functionality so pieces cannot go backwards
 * Add highlighting of pieces and available tiles
