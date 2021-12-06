@@ -7,7 +7,6 @@ It is positioned so that each player has a light square on the right side corner
 
 24 discs (12 of 2 colors)
 
-Typically, they are flat and round. The color of one set is black and the other red or white or beige.
 
 ### Game Play
 
