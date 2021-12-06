@@ -5,7 +5,7 @@ A classic 8x8 chessboard, only the dark squares are used.
 
 It is positioned so that each player has a light square on the right side corner.
 
-24 discs (12 of 2 colors)
+24 alternating light and dark pieces.
 
 
 ### Game Play
